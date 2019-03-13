@@ -1,8 +1,5 @@
 package model
 
-import kotlin.math.pow
-import kotlin.math.sqrt
+data class Answer(var pt1: Point = Point(), var pt2: Point = Point(), var dist: Float = Float.MAX_VALUE)
 
-data class Answer(var id1: Int = -1, var id2: Int = -1, var dist: Float = Float.MAX_VALUE)
-
-data class Point(val id: Int, val x: Float, val y: Float)
+data class Point(val id: Int = -1, val x: Float = 0f, val y: Float = 0f)
