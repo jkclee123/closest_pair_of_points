@@ -1,11 +1,12 @@
 package main
 
-import model.Answer
-import model.Point
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
+
+data class Answer(var pt1: Point = Point(), var pt2: Point = Point(), var dist: Float = Float.MAX_VALUE)
+data class Point(val id: Int = -1, val x: Float = 0f, val y: Float = 0f)
 
 fun main(args: Array<String>){
     val pointList: List<Point> = genPoints(50000, 10000f)
