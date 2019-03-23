@@ -5,19 +5,20 @@ import kotlin.math.sqrt
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
+const val ptCount: Int = 100000
+const val bound: Float = 10000f
+
 data class Answer(var pt1: Point = Point(), var pt2: Point = Point(), var dist: Float = Float.MAX_VALUE)
 data class Point(val id: Int = -1, val x: Float = 0f, val y: Float = 0f)
 
 fun main(args: Array<String>){
-    val pointList: List<Point> = genPoints(50000, 10000f)
+    val pointList: List<Point> = genPoints()
     var answer = Answer()
     var elapsedTime: Long
     elapsedTime = measureTimeMillis { answer = bruteForceMethod(pointList) }
-    println(answer)
-    println("${elapsedTime}ms")
+    println("${answer.pt1.id} ${answer.pt2.id} ${answer.dist} ${elapsedTime}ms")
     elapsedTime = measureTimeMillis { answer = divideAndConquerMethod(pointList) }
-    println(answer)
-    println("${elapsedTime}ms")
+    println("${answer.pt1.id} ${answer.pt2.id} ${answer.dist} ${elapsedTime}ms")
 }
 
 fun divideAndConquerMethod(pointList: List<Point>): Answer{
@@ -89,9 +90,9 @@ fun preprocess(pointList: List<Point>): List<Point>{
     return pointList.sortedBy { it.x }
 }
 
-fun genPoints(count: Int, bound: Float): List<Point>{
+fun genPoints(): List<Point>{
     var pList = ArrayList<Point>()
-    for (id in 0..(count-1)){
+    for (id in 0..(ptCount-1)){
         pList.add(Point(id, Random.nextFloat() * bound * 2 - bound,
             Random.nextFloat() * bound * 2 - bound))
     }
